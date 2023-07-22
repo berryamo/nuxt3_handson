@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="article-list">
     <h1>記事一覧</h1>
-    <ul v-for="article in articles" :key="article.id">
-      <li>
-        <NuxtLink :to="`/demo/articles/${article.id}`">
-          <p>{{ article.title }}</p>
-          <p>{{ article.author }}</p>
+    <ul class="article-list-container">
+      <li v-for="article in articles" :key="article.id" class="article-item">
+        <NuxtLink :to="`/demo/articles/${article.id}`" class="article-link">
+          <div class="article-content">
+            <p class="article-title">{{ article.title }}</p>
+            <p class="article-author">{{ article.author }}</p>
+          </div>
         </NuxtLink>
       </li>
     </ul>
@@ -55,3 +57,56 @@ export default {
   }
 };
 </script>
+
+<style>
+/* 全体のスタイル */
+.article-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* 記事リストのスタイル */
+.article-list-container {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.article-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* リンクのスタイル */
+.article-link {
+  text-decoration: none;
+  color: #333;
+}
+
+/* 記事のコンテンツスタイル */
+.article-content {
+  padding: 10px;
+}
+
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.article-author {
+  font-size: 14px;
+  color: #888;
+}
+</style>
